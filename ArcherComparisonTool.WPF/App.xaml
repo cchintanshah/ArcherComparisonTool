@@ -1,0 +1,33 @@
+﻿<Application x:Class="ArcherComparisonTool.WPF.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ui="http://schemas.modernwpf.com/2019"
+             xmlns:converters="clr-namespace:ArcherComparisonTool.WPF.Converters"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ui:ThemeResources>
+                    <ui:ThemeResources.ThemeDictionaries>
+                        <ResourceDictionary x:Key="Dark">
+                            <SolidColorBrush x:Key="AccentButtonBackground" Color="#FF6200"/>
+                            <SolidColorBrush x:Key="AccentButtonBackgroundPointerOver" Color="#FF7A1A"/>
+                            <SolidColorBrush x:Key="AccentButtonBackgroundPressed" Color="#E65800"/>
+                        </ResourceDictionary>
+                        <ResourceDictionary x:Key="Light">
+                            <SolidColorBrush x:Key="AccentButtonBackground" Color="#FF6200"/>
+                            <SolidColorBrush x:Key="AccentButtonBackgroundPointerOver" Color="#FF7A1A"/>
+                            <SolidColorBrush x:Key="AccentButtonBackgroundPressed" Color="#E65800"/>
+                        </ResourceDictionary>
+                    </ui:ThemeResources.ThemeDictionaries>
+                </ui:ThemeResources>
+                <ui:XamlControlsResources />
+            </ResourceDictionary.MergedDictionaries>
+            
+            <!-- Converters -->
+            <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+            <converters:InverseBooleanConverter x:Key="InverseBooleanConverter"/>
+            <converters:NullToBooleanConverter x:Key="NullToBooleanConverter"/>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
