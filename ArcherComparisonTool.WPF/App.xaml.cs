@@ -22,6 +22,10 @@ public partial class App : Application
             .WriteTo.File(logPath, rollingInterval: RollingInterval.Day)
             .CreateLogger();
         
+        // Force Light Theme with Blue Accent
+        ModernWpf.ThemeManager.Current.ApplicationTheme = ModernWpf.ApplicationTheme.Light;
+        ModernWpf.ThemeManager.Current.AccentColor = System.Windows.Media.Colors.DodgerBlue; // Fallback or explicit set
+        
         Log.Information("Application started");
     }
     

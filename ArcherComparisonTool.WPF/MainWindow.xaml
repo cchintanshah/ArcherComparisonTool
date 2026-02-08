@@ -80,48 +80,62 @@
         </StackPanel>
         
         <!-- Results -->
-        <Grid Grid.Row="3" Margin="20,10">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
+        <TabControl Grid.Row="3" Margin="20,10">
+            <!-- Tab 1: Not in Target (Source Only items) -->
+            <TabItem Header="{Binding TargetOnlyHeader}">
+                <DataGrid ItemsSource="{Binding TargetOnlyResults}"
+                          AutoGenerateColumns="False"
+                          IsReadOnly="True"
+                          GridLinesVisibility="Horizontal"
+                          HeadersVisibility="Column">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Type" Binding="{Binding ComparisonType}" Width="120"/>
+                        <DataGridTextColumn Header="Item Name" Binding="{Binding ItemName}" Width="250"/>
+                        <DataGridTextColumn Header="Identifier" Binding="{Binding ItemIdentifier}" Width="200"/>
+                        <DataGridTextColumn Header="Severity" Binding="{Binding Severity}" Width="100"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
             
-            <TextBlock Grid.Row="0" Text="Comparison Results" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,10"/>
+            <!-- Tab 2: Not in Source (Target Only items) -->
+            <TabItem Header="{Binding SourceOnlyHeader}">
+                <DataGrid ItemsSource="{Binding SourceOnlyResults}"
+                          AutoGenerateColumns="False"
+                          IsReadOnly="True"
+                          GridLinesVisibility="Horizontal"
+                          HeadersVisibility="Column">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Type" Binding="{Binding ComparisonType}" Width="120"/>
+                        <DataGridTextColumn Header="Item Name" Binding="{Binding ItemName}" Width="250"/>
+                        <DataGridTextColumn Header="Identifier" Binding="{Binding ItemIdentifier}" Width="200"/>
+                        <DataGridTextColumn Header="Severity" Binding="{Binding Severity}" Width="100"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
             
-            <DataGrid Grid.Row="1" ItemsSource="{Binding ComparisonResults}"
-                      AutoGenerateColumns="False"
-                      IsReadOnly="True"
-                      CanUserAddRows="False"
-                      CanUserDeleteRows="False"
-                      AlternatingRowBackground="{DynamicResource SystemControlBackgroundListLowBrush}"
-                      GridLinesVisibility="Horizontal"
-                      HeadersVisibility="Column">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Type" Binding="{Binding ComparisonType}" Width="120"/>
-                    <DataGridTextColumn Header="Item Name" Binding="{Binding ItemName}" Width="250"/>
-                    <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="150"/>
-                    <DataGridTextColumn Header="Identifier" Binding="{Binding ItemIdentifier}" Width="200"/>
-                    <DataGridTextColumn Header="Parent" Binding="{Binding ParentName}" Width="150"/>
-                    <DataGridTextColumn Header="Severity" Binding="{Binding Severity}" Width="100"/>
-                </DataGrid.Columns>
-                
-                <DataGrid.RowStyle>
-                    <Style TargetType="DataGridRow">
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding Status}" Value="MissingInTarget">
-                                <Setter Property="Background" Value="#FFCBCE"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Status}" Value="MissingInSource">
-                                <Setter Property="Background" Value="#FFEB9C"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Status}" Value="Mismatch">
-                                <Setter Property="Background" Value="#FFF2CC"/>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </DataGrid.RowStyle>
-            </DataGrid>
-        </Grid>
+            <!-- Tab 3: Mismatches -->
+            <TabItem Header="{Binding MismatchHeader}">
+                <DataGrid ItemsSource="{Binding MismatchResults}"
+                          AutoGenerateColumns="False"
+                          IsReadOnly="True"
+                          GridLinesVisibility="Horizontal"
+                          HeadersVisibility="Column">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Type" Binding="{Binding ComparisonType}" Width="120"/>
+                        <DataGridTextColumn Header="Item Name" Binding="{Binding ItemName}" Width="250"/>
+                        <DataGridTextColumn Header="Identifier" Binding="{Binding ItemIdentifier}" Width="200"/>
+                        <DataGridTextColumn Header="Property" Binding="{Binding PropertyName}" Width="150"/>
+                        <DataGridTextColumn Header="Source Value" Binding="{Binding SourceValue}" Width="150"/>
+                        <DataGridTextColumn Header="Target Value" Binding="{Binding TargetValue}" Width="150"/>
+                    </DataGrid.Columns>
+                    <DataGrid.RowStyle>
+                        <Style TargetType="DataGridRow">
+                            <Setter Property="Background" Value="#FFF2CC"/>
+                        </Style>
+                    </DataGrid.RowStyle>
+                </DataGrid>
+            </TabItem>
+        </TabControl>
         
         <!-- Status Bar -->
         <StatusBar Grid.Row="4">
