@@ -10,14 +10,16 @@
                 <ui:ThemeResources>
                     <ui:ThemeResources.ThemeDictionaries>
                         <ResourceDictionary x:Key="Dark">
-                            <SolidColorBrush x:Key="AccentButtonBackground" Color="#FF6200"/>
-                            <SolidColorBrush x:Key="AccentButtonBackgroundPointerOver" Color="#FF7A1A"/>
-                            <SolidColorBrush x:Key="AccentButtonBackgroundPressed" Color="#E65800"/>
+                            <SolidColorBrush x:Key="SystemControlHighlightAccentBrush" Color="#0078D7"/>
+                            <SolidColorBrush x:Key="AccentButtonBackground" Color="#0078D7"/>
+                            <SolidColorBrush x:Key="AccentButtonBackgroundPointerOver" Color="#1984DF"/>
+                            <SolidColorBrush x:Key="AccentButtonBackgroundPressed" Color="#006CC1"/>
                         </ResourceDictionary>
                         <ResourceDictionary x:Key="Light">
-                            <SolidColorBrush x:Key="AccentButtonBackground" Color="#FF6200"/>
-                            <SolidColorBrush x:Key="AccentButtonBackgroundPointerOver" Color="#FF7A1A"/>
-                            <SolidColorBrush x:Key="AccentButtonBackgroundPressed" Color="#E65800"/>
+                            <SolidColorBrush x:Key="SystemControlHighlightAccentBrush" Color="#0078D7"/>
+                            <SolidColorBrush x:Key="AccentButtonBackground" Color="#0078D7"/>
+                            <SolidColorBrush x:Key="AccentButtonBackgroundPointerOver" Color="#1984DF"/>
+                            <SolidColorBrush x:Key="AccentButtonBackgroundPressed" Color="#006CC1"/>
                         </ResourceDictionary>
                     </ui:ThemeResources.ThemeDictionaries>
                 </ui:ThemeResources>
