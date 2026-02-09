@@ -35,31 +35,31 @@ public partial class CollectionOptionsViewModel : ObservableObject
     private bool _includeDDEActions = true;
     
     [ObservableProperty]
-    private bool _includeReports = true;
+    private bool _includeReports = false;
     
     [ObservableProperty]
-    private bool _includeDashboards = true;
+    private bool _includeDashboards = false;
     
     [ObservableProperty]
-    private bool _includeWorkspaces = true;
+    private bool _includeWorkspaces = false;
     
     [ObservableProperty]
-    private bool _includeiViews = true;
+    private bool _includeiViews = false;
     
     [ObservableProperty]
-    private bool _includeRoles = true;
+    private bool _includeRoles = false;
     
     [ObservableProperty]
-    private bool _includeSecurityParameters = true;
+    private bool _includeSecurityParameters = false;
     
     [ObservableProperty]
-    private bool _includeNotifications = true;
+    private bool _includeNotifications = false;
     
     [ObservableProperty]
-    private bool _includeDataFeeds = true;
+    private bool _includeDataFeeds = false;
     
     [ObservableProperty]
-    private bool _includeSchedules = true;
+    private bool _includeSchedules = false;
     
     public CollectionOptions Options { get; private set; }
     
