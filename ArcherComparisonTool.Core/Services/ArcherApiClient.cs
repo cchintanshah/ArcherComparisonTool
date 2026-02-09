@@ -288,6 +288,72 @@ public class ArcherApiClient : IDisposable
         return await response.Content.ReadAsStringAsync();
     }
     
+    public async Task<List<Layout>> GetLayoutsAsync()
+    {
+        // Placeholder for future implementation
+        return await Task.FromResult(new List<Layout>());
+    }
+
+    public async Task<List<ValuesList>> GetValuesListsAsync()
+    {
+        // Placeholder for future implementation
+        return await Task.FromResult(new List<ValuesList>());
+    }
+
+    public async Task<List<DDERule>> GetDDERulesAsync()
+    {
+        // Placeholder for future implementation
+        return await Task.FromResult(new List<DDERule>());
+    }
+
+    public async Task<List<DDEAction>> GetDDEActionsAsync()
+    {
+        // Placeholder for future implementation
+        return await Task.FromResult(new List<DDEAction>());
+    }
+
+    public async Task<List<Workspace>> GetWorkspacesAsync()
+    {
+        // Placeholder for future implementation
+        return await Task.FromResult(new List<Workspace>());
+    }
+
+    public async Task<List<IView>> GetiViewsAsync()
+    {
+        // Placeholder for future implementation
+        return await Task.FromResult(new List<IView>());
+    }
+
+    public async Task<List<Role>> GetRolesAsync()
+    {
+        // Placeholder for future implementation
+        return await Task.FromResult(new List<Role>());
+    }
+
+    public async Task<List<SecurityParameter>> GetSecurityParametersAsync()
+    {
+        // Placeholder for future implementation
+        return await Task.FromResult(new List<SecurityParameter>());
+    }
+
+    public async Task<List<Notification>> GetNotificationsAsync()
+    {
+        // Placeholder for future implementation
+        return await Task.FromResult(new List<Notification>());
+    }
+
+    public async Task<List<DataFeed>> GetDataFeedsAsync()
+    {
+        // Placeholder for future implementation
+        return await Task.FromResult(new List<DataFeed>());
+    }
+
+    public async Task<List<Schedule>> GetSchedulesAsync()
+    {
+        // Placeholder for future implementation
+        return await Task.FromResult(new List<Schedule>());
+    }
+    
     public void Dispose()
     {
         _httpClient?.Dispose();

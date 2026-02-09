@@ -62,21 +62,25 @@
                     
                     <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
                         <StackPanel>
-                            <CheckBox Content="Modules" IsChecked="{Binding IncludeModules}" Margin="0,5"/>
-                            <CheckBox Content="Fields" IsChecked="{Binding IncludeFields}" Margin="0,5"/>
-                            <CheckBox Content="Values Lists" IsChecked="{Binding IncludeValuesLists}" Margin="0,5"/>
-                            <CheckBox Content="Layouts" IsChecked="{Binding IncludeLayouts}" Margin="0,5"/>
-                            <CheckBox Content="DDE Rules" IsChecked="{Binding IncludeDDERules}" Margin="0,5"/>
-                            <CheckBox Content="DDE Actions" IsChecked="{Binding IncludeDDEActions}" Margin="0,5"/>
-                            <CheckBox Content="Reports" IsChecked="{Binding IncludeReports}" Margin="0,5"/>
-                            <CheckBox Content="Dashboards" IsChecked="{Binding IncludeDashboards}" Margin="0,5"/>
-                            <CheckBox Content="Workspaces" IsChecked="{Binding IncludeWorkspaces}" Margin="0,5"/>
-                            <CheckBox Content="iViews" IsChecked="{Binding IncludeiViews}" Margin="0,5"/>
-                            <CheckBox Content="Roles" IsChecked="{Binding IncludeRoles}" Margin="0,5"/>
-                            <CheckBox Content="Security Parameters" IsChecked="{Binding IncludeSecurityParameters}" Margin="0,5"/>
-                            <CheckBox Content="Notifications" IsChecked="{Binding IncludeNotifications}" Margin="0,5"/>
-                            <CheckBox Content="Data Feeds" IsChecked="{Binding IncludeDataFeeds}" Margin="0,5"/>
-                            <CheckBox Content="Schedules" IsChecked="{Binding IncludeSchedules}" Margin="0,5"/>
+                            <TextBlock Text="Module Specific (Checked by Default)" FontWeight="Bold" Margin="0,0,0,5"/>
+                            <CheckBox Content="Fields" IsChecked="{Binding IncludeFields}" Margin="0,0,0,5"/>
+                            <CheckBox Content="Values Lists" IsChecked="{Binding IncludeValuesLists}" Margin="0,0,0,5"/>
+                            <CheckBox Content="Layouts" IsChecked="{Binding IncludeLayouts}" Margin="0,0,0,5"/>
+                            <CheckBox Content="DDE Rules" IsChecked="{Binding IncludeDDERules}" Margin="0,0,0,5"/>
+                            <CheckBox Content="DDE Actions" IsChecked="{Binding IncludeDDEActions}" Margin="0,0,0,5"/>
+                            
+                            <Separator Margin="0,10"/>
+                            
+                            <TextBlock Text="Instance Specific (Unchecked by Default)" FontWeight="Bold" Margin="0,0,0,5"/>
+                            <CheckBox Content="Reports" IsChecked="{Binding IncludeReports}" Margin="0,0,0,5"/>
+                            <CheckBox Content="Dashboards" IsChecked="{Binding IncludeDashboards}" Margin="0,0,0,5"/>
+                            <CheckBox Content="Workspaces" IsChecked="{Binding IncludeWorkspaces}" Margin="0,0,0,5"/>
+                            <CheckBox Content="iViews" IsChecked="{Binding IncludeiViews}" Margin="0,0,0,5"/>
+                            <CheckBox Content="Roles" IsChecked="{Binding IncludeRoles}" Margin="0,0,0,5"/>
+                            <CheckBox Content="Security Parameters" IsChecked="{Binding IncludeSecurityParameters}" Margin="0,0,0,5"/>
+                            <CheckBox Content="Notifications" IsChecked="{Binding IncludeNotifications}" Margin="0,0,0,5"/>
+                            <CheckBox Content="Data Feeds" IsChecked="{Binding IncludeDataFeeds}" Margin="0,0,0,5"/>
+                            <CheckBox Content="Schedules" IsChecked="{Binding IncludeSchedules}" Margin="0,0,0,5"/>
                         </StackPanel>
                     </ScrollViewer>
                 </Grid>

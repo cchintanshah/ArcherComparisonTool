@@ -135,6 +135,68 @@ public class MockMetadataService : IMetadataService
                     IsActive = true
                 });
             }
+
+            // Instance Specific Mock Data
+            if (options.IncludeReports)
+            {
+                metadata.Reports.Add(new Report
+                {
+                    Id = 401,
+                    Name = "Risk Overview Report",
+                    ModuleName = "Risk Register",
+                    ReportTypeDisplayColumnString = "Global",
+                    LastUpdatedBy = "System Admin",
+                    LastUpdatedDate = DateTime.Now.AddDays(-5)
+                });
+                
+                metadata.Reports.Add(new Report
+                {
+                    Id = 402,
+                    Name = "All Incidents",
+                    ModuleName = "Incident Management",
+                    ReportTypeDisplayColumnString = "Global",
+                    LastUpdatedBy = "System Admin",
+                    LastUpdatedDate = DateTime.Now.AddDays(-2)
+                });
+            }
+
+            if (options.IncludeDashboards)
+            {
+                metadata.Dashboards.Add(new Dashboard
+                {
+                    Id = 501,
+                    Name = "Executive Dashboard",
+                    Alias = "exec_dash",
+                    IsActive = true,
+                    IsSystem = false
+                });
+            }
+
+            if (options.IncludeNotifications)
+            {
+                metadata.Notifications.Add(new Notification
+                {
+                    Id = 601,
+                    Name = "Risk Created Notification",
+                    ApplicationName = "Risk Register",
+                    Active = true,
+                    TypeDisplayText = "Email"
+                });
+            }
+        }
+        else if (options.IncludeModules && options.SelectedModuleIds.Contains(2)) // Incident Management
+        {
+             progress.Report(($"Collecting metadata for Incident Management...", 20));
+             metadata.Modules.Add(new Module 
+            { 
+                Id = 2, 
+                Name = "Incident Management", 
+                Type = "Application", 
+                Guid = "GUID-INC-MGT", 
+                Alias = "inc_mgt",
+                UpdatedDate = DateTime.Now.AddDays(-5),
+                UpdatedBy = "System Admin"
+            });
         }
         
         progress.Report(("Collection complete", 100));
