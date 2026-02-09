@@ -7,6 +7,14 @@
         Height="600" Width="800"
         WindowStartupLocation="CenterOwner">
     
+    <Window.Resources>
+        <CollectionViewSource x:Key="GroupedModules" Source="{Binding AvailableModules}">
+            <CollectionViewSource.GroupDescriptions>
+                <PropertyGroupDescription PropertyName="Type"/>
+            </CollectionViewSource.GroupDescriptions>
+        </CollectionViewSource>
+    </Window.Resources>
+
     <Grid Margin="20">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -37,10 +45,19 @@
                         <Button Content="Deselect All" Command="{Binding DeselectAllModulesCommand}"/>
                     </StackPanel>
                     
-                    <ListBox Grid.Row="2" ItemsSource="{Binding AvailableModules}" ScrollViewer.VerticalScrollBarVisibility="Auto">
+                    <ListBox Grid.Row="2" ItemsSource="{Binding Source={StaticResource GroupedModules}}" ScrollViewer.VerticalScrollBarVisibility="Auto">
+                        <ListBox.GroupStyle>
+                            <GroupStyle>
+                                <GroupStyle.HeaderTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Name}" FontWeight="Bold" Margin="0,5,0,0"/>
+                                    </DataTemplate>
+                                </GroupStyle.HeaderTemplate>
+                            </GroupStyle>
+                        </ListBox.GroupStyle>
                         <ListBox.ItemTemplate>
                             <DataTemplate>
-                                <CheckBox IsChecked="{Binding IsSelected}" Content="{Binding Name}"/>
+                                <CheckBox IsChecked="{Binding IsSelected}" Content="{Binding Name}" Margin="10,0,0,0"/>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
@@ -62,7 +79,7 @@
                     
                     <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
                         <StackPanel>
-                            <TextBlock Text="Module Specific (Checked by Default)" FontWeight="Bold" Margin="0,0,0,5"/>
+                            <TextBlock Text="Module Specific" FontWeight="Bold" Margin="0,0,0,5"/>
                             <CheckBox Content="Fields" IsChecked="{Binding IncludeFields}" Margin="0,0,0,5"/>
                             <CheckBox Content="Values Lists" IsChecked="{Binding IncludeValuesLists}" Margin="0,0,0,5"/>
                             <CheckBox Content="Layouts" IsChecked="{Binding IncludeLayouts}" Margin="0,0,0,5"/>
@@ -71,7 +88,7 @@
                             
                             <Separator Margin="0,10"/>
                             
-                            <TextBlock Text="Instance Specific (Unchecked by Default)" FontWeight="Bold" Margin="0,0,0,5"/>
+                            <TextBlock Text="Instance Specific" FontWeight="Bold" Margin="0,0,0,5"/>
                             <CheckBox Content="Reports" IsChecked="{Binding IncludeReports}" Margin="0,0,0,5"/>
                             <CheckBox Content="Dashboards" IsChecked="{Binding IncludeDashboards}" Margin="0,0,0,5"/>
                             <CheckBox Content="Workspaces" IsChecked="{Binding IncludeWorkspaces}" Margin="0,0,0,5"/>
