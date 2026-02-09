@@ -92,11 +92,12 @@ public class ExcelExporter
         worksheet.Cells["A5"].Value = "Comparison Date:";
         worksheet.Cells["B5"].Value = report.ComparisonDate.ToString("yyyy-MM-dd HH:mm:ss");
         
-        // Summary statistics
+            // Summary statistics
         var allResults = report.GetAllResults();
         var sourceOnly = allResults.Count(r => r.PropertyName == "Source Only");
         var targetOnly = allResults.Count(r => r.PropertyName == "Target Only");
         var differences = allResults.Count(r => r.Status == ComparisonStatus.Mismatch);
+        var matches = allResults.Count(r => r.Status == ComparisonStatus.Match);
         
         worksheet.Cells["A7"].Value = "Summary Statistics";
         worksheet.Cells["A7"].Style.Font.Bold = true;
@@ -113,17 +114,21 @@ public class ExcelExporter
         worksheet.Cells["A11"].Value = "Differences:";
         worksheet.Cells["B11"].Value = differences;
         worksheet.Cells["B11"].Style.Font.Color.SetColor(Color.DarkOrange);
+
+        worksheet.Cells["A12"].Value = "Matches:";
+        worksheet.Cells["B12"].Value = matches;
+        worksheet.Cells["B12"].Style.Font.Color.SetColor(Color.Green);
         
-        worksheet.Cells["A12"].Value = "Total:";
-        worksheet.Cells["B12"].Value = allResults.Count;
-        worksheet.Cells["B12"].Style.Font.Bold = true;
+        worksheet.Cells["A13"].Value = "Total:";
+        worksheet.Cells["B13"].Value = allResults.Count;
+        worksheet.Cells["B13"].Style.Font.Bold = true;
         
         // Breakdown by type
-        worksheet.Cells["A14"].Value = "Breakdown by Type";
-        worksheet.Cells["A14"].Style.Font.Bold = true;
-        worksheet.Cells["A14"].Style.Font.Size = 14;
+        worksheet.Cells["A15"].Value = "Breakdown by Type";
+        worksheet.Cells["A15"].Style.Font.Bold = true;
+        worksheet.Cells["A15"].Style.Font.Size = 14;
         
-        int row = 16;
+        int row = 17;
         var groupedByType = allResults.GroupBy(r => r.ComparisonType)
             .OrderByDescending(g => g.Count());
         
@@ -207,6 +212,11 @@ public class ExcelExporter
             {
                 rowRange.Style.Fill.PatternType = ExcelFillStyle.Solid;
                 rowRange.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(255, 242, 204)); // Yellow
+            }
+            else if (result.Status == ComparisonStatus.Match)
+            {
+                rowRange.Style.Fill.PatternType = ExcelFillStyle.Solid;
+                rowRange.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(226, 240, 217)); // Light Green
             }
             
             row++;

@@ -135,6 +135,27 @@
                     </DataGrid.RowStyle>
                 </DataGrid>
             </TabItem>
+            
+            <!-- Tab 4: Matched -->
+            <TabItem Header="{Binding MatchedHeader}">
+                <DataGrid ItemsSource="{Binding MatchedResults}"
+                          AutoGenerateColumns="False"
+                          IsReadOnly="True"
+                          GridLinesVisibility="Horizontal"
+                          HeadersVisibility="Column">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Type" Binding="{Binding ComparisonType}" Width="120"/>
+                        <DataGridTextColumn Header="Item Name" Binding="{Binding ItemName}" Width="250"/>
+                        <DataGridTextColumn Header="Identifier" Binding="{Binding ItemIdentifier}" Width="200"/>
+                        <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="150"/>
+                    </DataGrid.Columns>
+                    <DataGrid.RowStyle>
+                        <Style TargetType="DataGridRow">
+                            <Setter Property="Background" Value="#E2F0D9"/> <!-- Light Green -->
+                        </Style>
+                    </DataGrid.RowStyle>
+                </DataGrid>
+            </TabItem>
         </TabControl>
         
         <!-- Status Bar -->

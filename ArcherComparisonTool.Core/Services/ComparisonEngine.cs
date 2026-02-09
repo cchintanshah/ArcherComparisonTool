@@ -147,18 +147,34 @@ public class ComparisonEngine
             
             var propertyDiffs = CompareObjectProperties(sourceItem, targetItem, CommonPropsToIgnore);
             
-            foreach (var diff in propertyDiffs)
+            if (propertyDiffs.Count > 0)
             {
+                foreach (var diff in propertyDiffs)
+                {
+                    results.Add(new ComparisonResult
+                    {
+                        ComparisonType = ComparisonType.Module,
+                        ItemName = key,
+                        ItemIdentifier = key,
+                        PropertyName = diff.PropertyName,
+                        SourceValue = diff.SourceValue,
+                        TargetValue = diff.TargetValue,
+                        Status = ComparisonStatus.Mismatch,
+                        Severity = Severity.Warning
+                    });
+                }
+            }
+            else
+            {
+                // Match
                 results.Add(new ComparisonResult
                 {
                     ComparisonType = ComparisonType.Module,
                     ItemName = key,
                     ItemIdentifier = key,
-                    PropertyName = diff.PropertyName,
-                    SourceValue = diff.SourceValue,
-                    TargetValue = diff.TargetValue,
-                    Status = ComparisonStatus.Mismatch,
-                    Severity = Severity.Warning
+                    PropertyName = "All Properties",
+                    Status = ComparisonStatus.Match,
+                    Severity = Severity.Info
                 });
             }
         }
@@ -221,18 +237,35 @@ public class ComparisonEngine
             
             var propertyDiffs = CompareObjectProperties(sourceField, targetField, FieldPropsToIgnore);
             
-            foreach (var diff in propertyDiffs)
+            if (propertyDiffs.Count > 0)
             {
+                foreach (var diff in propertyDiffs)
+                {
+                    results.Add(new ComparisonResult
+                    {
+                        ComparisonType = ComparisonType.Field,
+                        ItemName = sourceField.Module,
+                        ItemIdentifier = sourceField.Level,
+                        PropertyName = diff.PropertyName,
+                        SourceValue = diff.SourceValue,
+                        TargetValue = diff.TargetValue,
+                        Status = ComparisonStatus.Mismatch,
+                        Severity = Severity.Warning
+                    });
+                }
+            }
+            else
+            {
+                // Match
                 results.Add(new ComparisonResult
                 {
                     ComparisonType = ComparisonType.Field,
                     ItemName = sourceField.Module,
                     ItemIdentifier = sourceField.Level,
-                    PropertyName = diff.PropertyName,
-                    SourceValue = diff.SourceValue,
-                    TargetValue = diff.TargetValue,
-                    Status = ComparisonStatus.Mismatch,
-                    Severity = Severity.Warning
+                    PropertyName = "All Properties",
+                    SourceValue = sourceField.Name,
+                    Status = ComparisonStatus.Match,
+                    Severity = Severity.Info
                 });
             }
         }
@@ -299,18 +332,35 @@ public class ComparisonEngine
             
             var propertyDiffs = CompareObjectProperties(sourceLayout, targetLayout, LayoutPropsToIgnore);
             
-            foreach (var diff in propertyDiffs)
+            if (propertyDiffs.Count > 0)
             {
+                foreach (var diff in propertyDiffs)
+                {
+                    results.Add(new ComparisonResult
+                    {
+                        ComparisonType = ComparisonType.Layout,
+                        ItemName = sourceLayout.Module,
+                        ItemIdentifier = $"{sourceLayout.Level} > {sourceLayout.LayoutName} > {sourceLayout.LayoutTab} > {sourceLayout.LayoutSection}",
+                        PropertyName = diff.PropertyName,
+                        SourceValue = diff.SourceValue,
+                        TargetValue = diff.TargetValue,
+                        Status = ComparisonStatus.Mismatch,
+                        Severity = Severity.Warning
+                    });
+                }
+            }
+            else
+            {
+                 // Match
                 results.Add(new ComparisonResult
                 {
                     ComparisonType = ComparisonType.Layout,
                     ItemName = sourceLayout.Module,
                     ItemIdentifier = $"{sourceLayout.Level} > {sourceLayout.LayoutName} > {sourceLayout.LayoutTab} > {sourceLayout.LayoutSection}",
-                    PropertyName = diff.PropertyName,
-                    SourceValue = diff.SourceValue,
-                    TargetValue = diff.TargetValue,
-                    Status = ComparisonStatus.Mismatch,
-                    Severity = Severity.Warning
+                    PropertyName = "All Properties",
+                    SourceValue = sourceLayout.LayoutField,
+                    Status = ComparisonStatus.Match,
+                    Severity = Severity.Info
                 });
             }
         }
@@ -366,17 +416,32 @@ public class ComparisonEngine
             
             var propertyDiffs = CompareObjectProperties(sourceItem, targetItem, new HashSet<string> { "Id", "Values" });
             
-            foreach (var diff in propertyDiffs)
+            if (propertyDiffs.Count > 0)
             {
+                foreach (var diff in propertyDiffs)
+                {
+                    results.Add(new ComparisonResult
+                    {
+                        ComparisonType = ComparisonType.ValuesList,
+                        ItemName = key,
+                        PropertyName = diff.PropertyName,
+                        SourceValue = diff.SourceValue,
+                        TargetValue = diff.TargetValue,
+                        Status = ComparisonStatus.Mismatch,
+                        Severity = Severity.Warning
+                    });
+                }
+            }
+            else
+            {
+                // Match (at top level)
                 results.Add(new ComparisonResult
                 {
                     ComparisonType = ComparisonType.ValuesList,
                     ItemName = key,
-                    PropertyName = diff.PropertyName,
-                    SourceValue = diff.SourceValue,
-                    TargetValue = diff.TargetValue,
-                    Status = ComparisonStatus.Mismatch,
-                    Severity = Severity.Warning
+                    PropertyName = "All Properties",
+                    Status = ComparisonStatus.Match,
+                    Severity = Severity.Info
                 });
             }
             
@@ -452,17 +517,33 @@ public class ComparisonEngine
             
             var propertyDiffs = CompareObjectProperties(sourceItem, targetItem, new HashSet<string> { "Id", "Children" });
             
-            foreach (var diff in propertyDiffs)
+            if (propertyDiffs.Count > 0)
             {
+                foreach (var diff in propertyDiffs)
+                {
+                    results.Add(new ComparisonResult
+                    {
+                        ComparisonType = ComparisonType.ValuesListValue,
+                        ItemName = parentName,
+                        ItemIdentifier = key,
+                        PropertyName = diff.PropertyName,
+                        SourceValue = diff.SourceValue,
+                        TargetValue = diff.TargetValue,
+                        Status = ComparisonStatus.Mismatch,
+                        Severity = Severity.Info
+                    });
+                }
+            }
+            else
+            {
+                 // Match
                 results.Add(new ComparisonResult
                 {
                     ComparisonType = ComparisonType.ValuesListValue,
                     ItemName = parentName,
                     ItemIdentifier = key,
-                    PropertyName = diff.PropertyName,
-                    SourceValue = diff.SourceValue,
-                    TargetValue = diff.TargetValue,
-                    Status = ComparisonStatus.Mismatch,
+                    PropertyName = "All Properties",
+                    Status = ComparisonStatus.Match,
                     Severity = Severity.Info
                 });
             }
@@ -531,16 +612,31 @@ public class ComparisonEngine
             
             var propertyDiffs = CompareObjectProperties(sourceItem, targetItem, CommonPropsToIgnore);
             
-            foreach (var diff in propertyDiffs)
+            if (propertyDiffs.Count > 0)
             {
+                foreach (var diff in propertyDiffs)
+                {
+                    results.Add(new ComparisonResult
+                    {
+                        ComparisonType = ComparisonType.Report,
+                        ItemName = key,
+                        PropertyName = diff.PropertyName,
+                        SourceValue = diff.SourceValue,
+                        TargetValue = diff.TargetValue,
+                        Status = ComparisonStatus.Mismatch,
+                        Severity = Severity.Info
+                    });
+                }
+            }
+            else
+            {
+                // Match
                 results.Add(new ComparisonResult
                 {
                     ComparisonType = ComparisonType.Report,
                     ItemName = key,
-                    PropertyName = diff.PropertyName,
-                    SourceValue = diff.SourceValue,
-                    TargetValue = diff.TargetValue,
-                    Status = ComparisonStatus.Mismatch,
+                    PropertyName = "All Properties",
+                    Status = ComparisonStatus.Match,
                     Severity = Severity.Info
                 });
             }
@@ -597,16 +693,31 @@ public class ComparisonEngine
             
             var propertyDiffs = CompareObjectProperties(sourceItem, targetItem, CommonPropsToIgnore);
             
-            foreach (var diff in propertyDiffs)
+            if (propertyDiffs.Count > 0)
             {
+                foreach (var diff in propertyDiffs)
+                {
+                    results.Add(new ComparisonResult
+                    {
+                        ComparisonType = ComparisonType.Dashboard,
+                        ItemName = key,
+                        PropertyName = diff.PropertyName,
+                        SourceValue = diff.SourceValue,
+                        TargetValue = diff.TargetValue,
+                        Status = ComparisonStatus.Mismatch,
+                        Severity = Severity.Info
+                    });
+                }
+            }
+            else
+            {
+                // Match
                 results.Add(new ComparisonResult
                 {
                     ComparisonType = ComparisonType.Dashboard,
                     ItemName = key,
-                    PropertyName = diff.PropertyName,
-                    SourceValue = diff.SourceValue,
-                    TargetValue = diff.TargetValue,
-                    Status = ComparisonStatus.Mismatch,
+                    PropertyName = "All Properties",
+                    Status = ComparisonStatus.Match,
                     Severity = Severity.Info
                 });
             }
